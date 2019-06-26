@@ -10,9 +10,23 @@ import sys
 
 def main():
 	if(len(sys.argv) != 3):
-		print("Error: invalid syntax\nCorrect Syntax: python3 metric.py <input file> <metric-type>\nValid metric types: bouldin, silhouette")
+		print("Error: invalid syntax\nCorrect Syntax: python3 metric.py <input file> <metric-type>\nValid metric types: boul, silh")
 		sys.exit(0)
+	print("Reading file...")
 	pfile = pandas.read_csv(sys.argv[1])
+	print("Success")
+	mode = sys.argv[2]
+	if(mode != 'boul' and mode != 'silh'):
+		print("Error: invalid syntax\nCorrect Syntax: python3 metric.py <input file> <metric-type>\nValid metric types: boul, silh")
+		sys.exit(0)
+	if(mode == 'boul'):
+		runBoul(pfile)
+	elif(mode == 'silh'):
+		runSilh(pfile)
+	return
 
+def runBoul(pfile):
+
+def runSilh(pfile):
 
 main()
