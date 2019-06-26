@@ -3,7 +3,7 @@
 #Project: scikit-learn clustering metrics
 #File: metric.py
 
-import sklearn
+import sklearn.metrics as skm
 import pandas
 import sys
 
@@ -26,7 +26,7 @@ def main():
 	return
 
 def runBoul(pfile):
-
+	skm.davies_bouldin_score(pfile.values, pfile.columns)
 def runSilh(pfile):
-
+	skm.silhouette_score(pfile.values, pfile.columns)
 main()
