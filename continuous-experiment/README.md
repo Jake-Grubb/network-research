@@ -1,11 +1,11 @@
-#Continuity Experiment
+# Continuity Experiment
 Project description....
 
-##Goals
+## Goals
 Project goals...
 
-##Testing Methodology
+## Testing Methodology
 Project Methodology
 
-##Results
+## Results
 TO BE DETERMINED
