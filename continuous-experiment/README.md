@@ -10,6 +10,7 @@ The variable to be tested is the ratio of discrete to continuous data. Discrete 
 (0 or 1), whereas all continuous data will be a decimal value between 0 and 1.
 
 The datasets generated will be of the form
+
 |Total Features | Discrete Features | Continuous Features | Time-to-complete|
 |----|----|----|----|
 |100|5|95|*|
