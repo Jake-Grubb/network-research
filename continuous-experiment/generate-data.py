@@ -61,3 +61,4 @@ def generate_out():
 		dataArray.append(row)
 	return dataArray
 
+generate_csv()
