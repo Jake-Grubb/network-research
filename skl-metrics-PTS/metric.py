@@ -9,7 +9,7 @@ import sys
 
 def main():
 	if(len(sys.argv) != 4):
-		print("Error: invalid syntax\nCorrect Syntax: python3 metric.py <input file> <metric-type> <target column>\nValid metric types: boul, silh")
+		print("Error: invalid syntax\nCorrect Syntax: python3 metric.py <input file> <metric-type> <target column>\nValid metric types: boul, silh, cali")
 		sys.exit(0)
 	print("Reading file...")
 	pfile = pandas.read_csv(sys.argv[1])
@@ -17,14 +17,17 @@ def main():
 	print("Success")
 	mode = sys.argv[2]
 	target_column = sys.argv[3]
-	if(mode != 'boul' and mode != 'silh'):
-		print("Error: invalid syntax\nCorrect Syntax: python3 metric.py <input file> <metric-type>\nValid metric types: boul, silh")
+	if(mode != 'boul' and mode != 'silh' and mode != 'cali'):
+		print("Error: invalid syntax\nCorrect Syntax: python3 metric.py <input file> <metric-type>\nValid metric types: boul, silh, cali")
 		sys.exit(0)
 	if(mode == 'boul'):
 		value = runBoul(pfile, target_column)
 	elif(mode == 'silh'):
 		value = runSilh(pfile, target_column)
+	elif(mode == 'cali'):
+		value = runCali(pfile, target_column)
 	with open("./" + sys.argv[1] + "_" + mode + "_results.txt", "w") as outFile:
+		print("Value: " + str(value))
 		outFile.write("mode " + "value: " + str(value))
 	return
 
@@ -36,4 +39,8 @@ def runSilh(pfile, results_name):
 	results_column = pfile[results_name]
 	pfile.drop(results_name, axis=1, inplace = True)
 	return skm.silhouette_score(pfile, results_column)
+def runCali(pfile, results_name):
+	results_column = pfile[results_name]
+	pfile.drop(results_name, axis=1, inplace = True)
+	return skm.calinski_harabasz_score(pfile, results_column)
 main()
