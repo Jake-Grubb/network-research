@@ -13,6 +13,7 @@ import time
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.preprocessing import StandardScaler
 
 def main():
 	#Take arguments as an input
@@ -45,6 +46,11 @@ def run_k_means(dataset):
 	y = dataset.iloc[:,0].values # AKA y
 	#Split into test and train
 	x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.25)
+	#Preprocess (Scale the data)
+	scaler = StandardScaler()
+	scaler.fit(x_train)
+	x_train = scaler.transform(x_train)
+	x_test	= scaler.transform(x_test)
 	#Train the classifier
 	classifier = KNeighborsClassifier(n_neighbors=5)
 	classifier.fit(x_train, y_train)
