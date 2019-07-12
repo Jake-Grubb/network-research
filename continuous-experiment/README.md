@@ -26,4 +26,17 @@ Following generation, each dataset will be ran through the Python Scikit-learn L
 Results will be in a similar table as shown above, with the Time-to-complete colummn completed. If there is a NEGATIVE trend between Time-to-complete and number of discrete features, we can conclude that K-nearest neighbors will run faster with more discrete features. Any other trend will prove inconclusive.
 
 ## Results
-TO BE DETERMINED
+After running each dataset with the "evaluate.py" script found within this repository, the following results were found:
+
+
+| Entries | K-Value |Total Features | Discrete Features | Continuous Features | Time-to-complete (seconds)|
+|----|----|----|----|----|----|
+|20000|5|100|5|95|17.6843|
+|20000|5|100|10|90|16.5530|
+|20000|5|100|20|80|17.4286|
+|20000|5|100|30|70|16.5183|	
+|20000|5|100|50|50|17.7453|
+|20000|5|100|70|30|17.8404|
+|20000|5|100|100|0|16.7206|
+
+Based on this dataset, there appears to be **no correlation** between the ratio of discrete to continuous features and the runtime of the overall clustering
