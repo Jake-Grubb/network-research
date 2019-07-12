@@ -41,18 +41,19 @@ def main():
 def run_k_means(dataset):
 	#We will assume the first column is our attribute
 	#All other columns are attributes
-	attributes = dataset.iloc[:, 1:].values #AKA x
-	labels = dataset.iloc[:, 0].values # AKA y
+	x = dataset.iloc[:,1:].values #AKA x
+	y = dataset.iloc[:,0].values # AKA y
 	#Split into test and train
-	x_train, x_test, y_train, y_test = train_test_split(attributes, labels, test_size = 0.20)
+	x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.25)
 	#Train the classifier
 	classifier = KNeighborsClassifier(n_neighbors=5)
 	classifier.fit(x_train, y_train)
 	#Make our predicitions
 	y_pred = classifier.predict(x_test)
 	#Run our evaluation
-	print(confusion_matrix(y_text, y_pred))
+	print(confusion_matrix(y_test, y_pred))
 	print(classification_report(y_test, y_pred))
 
 main()
+
 
