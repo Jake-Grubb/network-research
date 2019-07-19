@@ -49,8 +49,8 @@ correlated_features = set()
 correlated_features_complement = set()
 correlation_matrix = regards_data.corr()
 for i in range(len(correlation_matrix.columns)):
-    for j in range(i):
-        if abs(correlation_matrix.iloc[i, j]) > 0.8:
+	for j in range(i):
+		if abs(correlation_matrix.iloc[i, j]) > 0.8:
 			column_name = correlation_matrix.columns[i]
 			correlated_features.add(column_name)
 
@@ -75,17 +75,17 @@ np.savetxt(results_file, test_features.shape)
 
 clf = LogisticRegression(random_state=0)
 if (classifier_name == "NB"):
-    clf = GaussianNB()
+	clf = GaussianNB()
 elif (classifier_name == "RF"):
-    clf = RandomForestClassifier(n_jobs=-1)
+	clf = RandomForestClassifier(n_jobs=-1)
 elif (classifier_name == "KNN"):
-    clf = KNeighborsClassifier(n_neighbors=4)
+	clf = KNeighborsClassifier(n_neighbors=4)
 
 if (wrapper_method_name != "EX"):
-    # Step forward or backward feature selection
-    direction = (wrapper_method_name == "SF")
+	# Step forward or backward feature selection
+	direction = (wrapper_method_name == "SF")
 
-    feature_selector = SequentialFeatureSelector(clf,
+	feature_selector = SequentialFeatureSelector(clf,
                                                  k_features=num_selected_features,
                                                  forward=direction,
                                                  verbose=2,
@@ -93,7 +93,7 @@ if (wrapper_method_name != "EX"):
                                                  cv=4)
 else:
     # Exhaustive feature selection
-    feature_selector = ExhaustiveFeatureSelector(clf,
+	feature_selector = ExhaustiveFeatureSelector(clf,
                                                  min_features=5,
                                                  max_features=num_selected_features,
                                                  scoring='roc_auc',
@@ -105,15 +105,15 @@ features = feature_selector.fit(np.array(train_features.fillna(0)), train_labels
 filtered_features = train_features.columns[list(features.k_feature_idx_)]
 results_file.write('\n\nfiltered_features for %s:\n' % target_column)
 for item in filtered_features:
-    results_file.write("%s\n" % item)
+	results_file.write("%s\n" % item)
 
 clf = LogisticRegression(random_state=0)
 if (classifier_name == "NB"):
-    clf = GaussianNB()
+	clf = GaussianNB()
 elif (classifier_name == "RF"):
-    clf = RandomForestClassifier(n_estimators=100, random_state=41, max_depth=3)
+	clf = RandomForestClassifier(n_estimators=100, random_state=41, max_depth=3)
 elif (classifier_name == "KNN"):
-    clf = KNeighborsClassifier(n_neighbors=4)
+	clf = KNeighborsClassifier(n_neighbors=4)
 
 clf.fit(train_features[filtered_features].fillna(0), train_labels)
 
