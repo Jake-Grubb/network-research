@@ -14,6 +14,7 @@ from sklearn.naive_bayes import GaussianNB
 
 #Modified here
 from sklearn.linear_model import RidgeClassifier
+from sklearn.linear_model import PassiveAggressiveClassifier
 #End Modified
 
 from sklearn.metrics import roc_auc_score
@@ -87,6 +88,8 @@ elif (classifier_name == "KNN"):
 # Modified Here
 elif (classifier_name == "RC"):
 	clf = RidgeClassifier()
+elif (classifier_name == "PA"):
+	clf = PassiveAggressiveClassifier()
 # End Modified
 
 if (wrapper_method_name != "EX"):
