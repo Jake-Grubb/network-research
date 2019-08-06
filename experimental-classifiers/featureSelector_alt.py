@@ -15,6 +15,9 @@ from sklearn.naive_bayes import GaussianNB
 #Modified here
 from sklearn.linear_model import RidgeClassifier
 from sklearn.linear_model import PassiveAggressiveClassifier
+from sklearn.linear_model import SGDClassifier
+from sklearn.linear_model import TheilSenRegressor
+from sklearn.linear_model import Lars
 #End Modified
 
 from sklearn.metrics import roc_auc_score
@@ -90,6 +93,12 @@ elif (classifier_name == "RC"):
 	clf = RidgeClassifier()
 elif (classifier_name == "PA"):
 	clf = PassiveAggressiveClassifier()
+elif (classifier_name == "SGD"):
+	clf = SGDClassifier()
+elif (classifier_name == "TS"):
+	clf = TheilSenRegressor()
+elif (classifier_name == "LARS"):
+	clf = Lars()
 # End Modified
 
 if (wrapper_method_name != "EX"):
@@ -125,6 +134,19 @@ elif (classifier_name == "RF"):
 	clf = RandomForestClassifier(n_estimators=100, random_state=41, max_depth=3)
 elif (classifier_name == "KNN"):
 	clf = KNeighborsClassifier(n_neighbors=4)
+#Begin Modification
+elif (classifier_name == "RC"):
+        clf = RidgeClassifier()
+elif (classifier_name == "PA"):
+        clf = PassiveAggressiveClassifier()
+elif (classifier_name == "SGD"):
+        clf = SGDClassifier()
+elif (classifier_name == "TS"):
+        clf = TheilSenRegressor()
+elif (classifier_name == "LARS"):
+        clf = Lars()
+#End Modification
+
 
 clf.fit(train_features[filtered_features].fillna(0), train_labels)
 
