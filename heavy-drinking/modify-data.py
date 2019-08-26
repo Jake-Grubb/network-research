@@ -27,19 +27,22 @@ with open(inputFileName) as inFile:
 		#	if(row['Alc_Drinks_Wk'] == 1):
 		#		print(row['Alc_Drinks_Wk'])
 		for row in fileReader:
-			if(float(row['Alc_Drinks_Wk']) * 224 > 35 and row['Gender'] == 1): #High abuse, male
+			if(row['Alc_Drinks_Wk'] == ""): #Upon empty, skip
+				row['heavy_alcohol_risk'] = 0
+				row['light_alcohol_risk'] = 0
+			elif((float(row['Alc_Drinks_Wk']) * 224) > 35 and row['Gender'] == '1'): #High abuse, male
 				row['heavy_alcohol_risk'] = 1
 				row['light_alcohol_risk'] = 0
 				fileWriter.writerow(row)
-			elif(float(row['Alc_Drinks_Wk']) * 224 > 28 and row['Gender'] == 0): #High abuse, female
+			elif((float(row['Alc_Drinks_Wk']) * 224) > 28 and row['Gender'] == '0'): #High abuse, female
 				row['heavy_alcohol_risk'] = 1
 				row['light_alcohol_risk'] = 0
 				fileWriter.writerow(row)
-			elif(float(row['Alc_Drinks_Wk']) * 224 > 14 and row['Gender'] == 1): #Moderate abuse, male
+			elif((float(row['Alc_Drinks_Wk']) * 224) > 14 and row['Gender'] == '1'): #Moderate abuse, male
 				row['heavy_alcohol_risk'] = 0
 				row['light_alcohol_risk'] = 1
 				fileWriter.writerow(row)
-			elif(float(row['Alc_Drinks_Wk']) * 224 > 7 and row['Gender'] == 0): #Moderate abuse female
+			elif((float(row['Alc_Drinks_Wk']) * 224) > 7 and row['Gender'] == '0'): #Moderate abuse female
 				row['heavy_alcohol_risk'] = 0
 				row['light_alcohol_risk'] = 1
 				fileWriter.writerow(row)
