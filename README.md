@@ -9,3 +9,9 @@ Experiment to determine the effects of discrete versus continuous data when runn
 
 ## spring-stratify
 Experiment to evaluate the effects of proper stratification of datasets when running clustering functions.
+
+## experimental-classifiers
+Implementations of a variety of other classifiers, testing if we can improve AUC over our existing classifiers
+
+##  heavy-drinking
+Experiment to create a new feature within the dataset, at-risk-alcohol-use, as defined by the NIAAA, as	more than 7 drinks per week for	women and 14 drinks per	week for men.
